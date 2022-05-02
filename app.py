@@ -11,7 +11,7 @@ def Index():
 @app.route("/Summarize",methods=["GET","POST"])
 def Summarize():
     if req.method== "POST":
-        API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
+        API_URL = "https://api-inference.huggingface.co/models/faisalahmad/summarizer2"
         headers = {"Authorization": "Bearer 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"}
 
         data=req.form["data"]
@@ -27,6 +27,6 @@ def Summarize():
             "parameters":{"min_length":minL,"max_length":maxL},
         })[0]
         print(output)
-        return render_template("index.html",result=output["summary_text"])
+        return render_template("index.html",result=output["generated_text"])
     else:
         return render_template("index.html")
